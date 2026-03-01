@@ -693,7 +693,7 @@ with tab2:
         ax.plot(xl, np.poly1d(z)(xl), color=G, linewidth=2,
                 label=f'+${z[0]:.2f}/km trend')
         ax.scatter([distance],[predicted_fare], color='white', s=120, zorder=10,
-                   marker='★', label='Your ride')
+                   marker='*', label='Your ride')
         ax.set_xlabel('Distance (km)'); ax.set_ylabel('Fare ($)')
         ax.set_xlim(0,35); ax.legend(fontsize=8, frameon=False)
         ax.grid(alpha=0.3)
@@ -856,7 +856,7 @@ with tab4:
                 ax.scatter(sub['distance_km'], sub['fare_amount'],
                            color=SC[seg], alpha=0.4, s=10, label=seg)
         ax.scatter([distance],[predicted_fare], color='white', s=160, zorder=10,
-                   marker='★', label='Your ride')
+                   marker='*', label='Your ride')
         ax.set_xlabel('Distance (km)'); ax.set_ylabel('Fare ($)')
         ax.set_xlim(0,35)
         ax.legend(fontsize=8, frameon=False, markerscale=1.5)
