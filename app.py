@@ -399,7 +399,7 @@ plt.rcParams.update({
     'grid.alpha': 0.5,
     'grid.linewidth': 0.5,
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Inter', 'Arial', 'Helvetica'],
+    'font.sans-serif': ['Arial', 'Helvetica', 'DejaVu Sans'],
     'font.size': 10,
     'axes.spines.top': False,
     'axes.spines.right': False,
@@ -609,7 +609,7 @@ with tab1:
         ax.set_xlim(0, max([base, dist, prem]) * 1.5 + 2)
         ax.grid(axis='x', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
         st.markdown(f'<div class="pred-panel"><p class="pred-panel-title">XGBoost Regressor · Fare Prediction</p><p class="pred-value" style="color:#276EF1;">${predicted_fare:.2f}</p><p class="pred-range">Confidence range: ${predicted_fare * 0.85:.2f} — ${predicted_fare * 1.15:.2f}</p></div>', unsafe_allow_html=True)
 
@@ -632,7 +632,7 @@ with tab1:
         ax.axis('off')
         ax.set_facecolor('#FFFFFF')
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
         surge_icon = "HIGH-FARE RIDE" if surge_cls == 1 else "STANDARD RIDE"
         st.markdown(f'<div class="pred-panel"><p class="pred-panel-title">Logistic Regression · Surge Classifier</p><p class="pred-value" style="font-size:1.4rem; margin-top:4px;">{surge_icon}</p><div class="prob-bar-wrap"><div class="prob-bar-fill" style="width:{surge_prob * 100:.0f}%;"></div></div><p class="pred-range" style="margin-top:6px;">Confidence: {surge_prob * 100:.1f}%</p></div>', unsafe_allow_html=True)
@@ -647,14 +647,14 @@ with tab1:
                            wedgeprops={'width': 0.45, 'edgecolor': '#FFFFFF', 'linewidth': 2},
                            explode=explode_vals)
         ax.text(0, 0, segment.replace('/', '\n'), ha='center', va='center',
-                fontsize=8, color='#000000', fontweight='bold', fontfamily='Inter')
+                fontsize=8, color='#000000', fontweight='bold')
         ax.set_title('Ride Segment', color='#000000', fontweight='bold', pad=12, fontsize=11)
         handles = [mpatches.Patch(color=SC[s], label=s) for s in SEG_ORDER]
         ax.legend(handles=handles, loc='lower center', fontsize=7,
                   bbox_to_anchor=(0.5, -0.12), ncol=2,
                   frameon=False, labelcolor='#000000')
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
         st.markdown(f'<div class="pred-panel"><p class="pred-panel-title">K-Means Clustering · Ride Segment</p><span class="seg-chip">● {segment}</span><p class="pred-range" style="margin-top:10px;">{"Short urban ride — price-sensitive tier" if segment == "Budget" else "Core intracity — standard fare" if segment == "Standard" else "Peak/medium ride — surge tier" if segment == "Premium" else "Long-haul or airport — premium tier"}</p></div>', unsafe_allow_html=True)
 
@@ -669,7 +669,7 @@ with tab1:
                   'Yes' if is_peak else 'No', 'Yes' if is_night else 'No', 'Yes' if is_weekend else 'No',
                   segment, f"{'High-Fare' if surge_cls == 1 else 'Standard'} ({surge_prob * 100:.0f}%)"]
     })
-    st.dataframe(summary_df, hide_index=True, use_container_width=True)
+    st.dataframe(summary_df, hide_index=True, width="stretch")
 
 # ══════════════════════════════════════════════════════════════
 # TAB 2 — EDA & PRICING
@@ -708,7 +708,7 @@ with tab2:
         ax.legend(fontsize=8, frameon=False)
         ax.grid(axis='y', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     with r1c2:
@@ -733,7 +733,7 @@ with tab2:
         ax.legend(fontsize=8, frameon=False)
         ax.grid(alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     r2c1, r2c2 = st.columns(2)
@@ -750,7 +750,7 @@ with tab2:
         ax.set_ylabel('Total Revenue ($)', color='#6B6B6B', fontweight=600)
         ax.grid(axis='y', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
         st.markdown('<div class="insight-row"><b>Seasonal Pattern:</b> Revenue peaks in June–August and December, reflecting leisure demand cycles and holiday travel surges.</div>', unsafe_allow_html=True)
 
@@ -770,7 +770,7 @@ with tab2:
                     f'${val:.1f}', ha='center', fontsize=8, color='#000000', fontweight=600)
         ax.grid(axis='y', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
         st.markdown('<div class="insight-row"><b>Airport Premium:</b> Airport/Other zones command the highest fare-per-km — reflecting fixed surcharges and inelastic demand (no substitute for a long ride).</div>', unsafe_allow_html=True)
 
@@ -793,7 +793,7 @@ with tab3:
     ax.set_ylabel('')
     ax.tick_params(labelsize=9)
     plt.tight_layout()
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, width="stretch")
     plt.close()
     st.caption(f"Blue line = your selected hour ({hour:02d}:00)")
 
@@ -830,7 +830,7 @@ with tab3:
         ax.legend(fontsize=8, frameon=False)
         ax.grid(alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     with sc_b:
@@ -847,7 +847,7 @@ with tab3:
         ax.legend(fontsize=8, frameon=False)
         ax.grid(axis='y', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     # Logistic regression classifier breakdown
@@ -908,7 +908,7 @@ with tab4:
         ax.legend(fontsize=8, frameon=False, markerscale=1.5)
         ax.grid(alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     with sg2:
@@ -931,7 +931,7 @@ with tab4:
         for i, val in enumerate(seg_avgs.values):
             axes[1].text(val + 0.3, i, f'${val:.2f}', va='center', fontsize=8, color='#000000', fontweight=600)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -997,7 +997,7 @@ with tab5:
         ax.set_xlim(0, importance.max() * 1.3)
         ax.grid(axis='x', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     with fi2:
@@ -1018,7 +1018,7 @@ with tab5:
                              f'{val:.2f}', ha='center', fontsize=7, color='#000000', fontweight=600)
             axes[i].grid(axis='y', alpha=0.5)
         plt.tight_layout()
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close()
 
     st.markdown('<hr class="divider">', unsafe_allow_html=True)
