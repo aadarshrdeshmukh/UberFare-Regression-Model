@@ -23,6 +23,7 @@ st.set_page_config(
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 * {
     font-family: 'Inter', sans-serif !important;
@@ -156,6 +157,169 @@ section[data-testid="stSidebar"] .stSlider > div > div > div > div {
 
 section[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] > div:first-child > div:first-child {
     background: #E2E2E2 !important;
+}
+
+/* Sidebar Header & Collapse Button */
+[data-testid="stSidebarHeader"] {
+    background-color: #FFFFFF !important;
+}
+
+[data-testid="stSidebarCollapseButton"] {
+    background-color: #FFFFFF !important;
+}
+
+[data-testid="stSidebarCollapseButton"] button {
+    background-color: #F0F0F0 !important;
+    color: #000000 !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+[data-testid="stSidebarCollapseButton"] button:hover {
+    background-color: #E2E2E2 !important;
+}
+
+[data-testid="stSidebarCollapseButton"] span[data-testid="stIconMaterial"] {
+    color: #000000 !important;
+}
+
+/* Hide tooltip on collapse button */
+[data-testid="stSidebarCollapseButton"] button {
+    pointer-events: auto !important;
+}
+
+[data-testid="stSidebarCollapseButton"] button span {
+    pointer-events: none !important;
+}
+
+/* Remove title attribute tooltip */
+[data-testid="stSidebarCollapseButton"] button::before,
+[data-testid="stSidebarCollapseButton"] button::after {
+    display: none !important;
+}
+
+/* Hide Material Icon text */
+span[data-testid="stIconMaterial"] {
+    font-family: 'Material Icons' !important;
+    font-size: 20px !important;
+    text-indent: 0 !important;
+    letter-spacing: normal !important;
+    word-wrap: normal !important;
+    white-space: nowrap !important;
+    direction: ltr !important;
+}
+
+/* If Material Icons don't load, hide the text completely */
+span[data-testid="stIconMaterial"]::before,
+span[data-testid="stIconMaterial"]::after {
+    display: none !important;
+}
+
+/* Alternative: Hide text overflow */
+[data-testid="stSidebarCollapseButton"] span[data-testid="stIconMaterial"] {
+    color: #000000 !important;
+    font-size: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-block !important;
+    overflow: hidden !important;
+    text-indent: -9999px !important;
+}
+
+/* Show icon using background or content */
+[data-testid="stSidebarCollapseButton"] span[data-testid="stIconMaterial"]::before {
+    content: '‹‹' !important;
+    font-size: 24px !important;
+    text-indent: 0 !important;
+    display: block !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    line-height: 24px !important;
+}
+
+/* Collapsed sidebar - show reopen button */
+[data-testid="stSidebarNav"] {
+    background-color: #FFFFFF !important;
+}
+
+/* Style the collapsed sidebar button - multiple selectors to catch it */
+section[data-testid="stSidebar"][aria-expanded="false"] + div button,
+button[data-testid="baseButton-header"],
+button[kind="header"],
+[data-testid="collapsedControl"] button,
+.st-emotion-cache-1gulkj5 button,
+button[aria-label*="Open"] {
+    background-color: #F0F0F0 !important;
+    color: #000000 !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+button[data-testid="baseButton-header"]:hover,
+button[kind="header"]:hover,
+[data-testid="collapsedControl"] button:hover {
+    background-color: #E2E2E2 !important;
+}
+
+/* Fix collapsed state icon - multiple selectors */
+button[data-testid="baseButton-header"] span[data-testid="stIconMaterial"],
+button[kind="header"] span[data-testid="stIconMaterial"],
+[data-testid="collapsedControl"] span[data-testid="stIconMaterial"] {
+    color: #000000 !important;
+    font-size: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-block !important;
+    overflow: hidden !important;
+    text-indent: -9999px !important;
+}
+
+button[data-testid="baseButton-header"] span[data-testid="stIconMaterial"]::before,
+button[kind="header"] span[data-testid="stIconMaterial"]::before,
+[data-testid="collapsedControl"] span[data-testid="stIconMaterial"]::before {
+    content: '››' !important;
+    font-size: 24px !important;
+    text-indent: 0 !important;
+    display: block !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    line-height: 24px !important;
+}
+
+/* Ensure button container is visible when sidebar is collapsed */
+[data-testid="collapsedControl"] {
+    background-color: #FFFFFF !important;
+    border-right: 1px solid #E2E2E2 !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999 !important;
+}
+
+/* Force visibility of collapsed sidebar controls */
+.st-emotion-cache-1gulkj5 {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Streamlit's collapsed sidebar button */
+div[data-testid="stSidebarUserContent"] ~ div button {
+    background-color: #F0F0F0 !important;
+    visibility: visible !important;
+    display: flex !important;
 }
 
 /* Buttons */
@@ -381,6 +545,29 @@ section[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] > div:first-c
 }
 
 </style>
+
+<script>
+// Remove tooltip from sidebar collapse button
+document.addEventListener('DOMContentLoaded', function() {
+    const removeTooltip = () => {
+        const button = document.querySelector('[data-testid="stSidebarCollapseButton"] button');
+        if (button) {
+            button.removeAttribute('title');
+            button.removeAttribute('aria-label');
+        }
+        const icon = document.querySelector('[data-testid="stSidebarCollapseButton"] span[data-testid="stIconMaterial"]');
+        if (icon) {
+            icon.removeAttribute('title');
+            icon.setAttribute('translate', 'no');
+        }
+    };
+    removeTooltip();
+    // Re-run after a short delay to catch dynamically loaded elements
+    setTimeout(removeTooltip, 100);
+    setTimeout(removeTooltip, 500);
+});
+</script>
+
 """, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════
