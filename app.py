@@ -22,7 +22,7 @@ st.set_page_config(
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 
 /* ── ROOT VARIABLES ── */
 :root {
@@ -42,7 +42,8 @@ st.markdown("""
 
 /* ── BASE ── */
 html, body, .stApp { background-color: var(--bg) !important; }
-* { font-family: 'DM Sans', sans-serif; color: var(--text); }
+html, body, .stApp, section[data-testid="stSidebar"] { font-family: 'DM Sans', sans-serif; color: var(--text); }
+[data-testid="stHeader"] { background: rgba(8,8,16,0.8) !important; backdrop-filter: blur(8px); }
 h1,h2,h3,h4,h5,h6 { font-family: 'Syne', sans-serif !important; }
 
 /* ── HIDE STREAMLIT CHROME ── */
@@ -61,8 +62,11 @@ section[data-testid="stSidebar"] .stSelectbox label {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--muted) !important;
-    font-weight: 500;
+    font-weight: 600;
 }
+section[data-testid="stSidebar"] .stSlider > div > div > div > div { background-color: var(--danger) !important; }
+section[data-testid="stSidebar"] .stSlider [data-testid="stThumbValue"] { color: var(--danger) !important; font-family: 'DM Mono', monospace !important; }
+section[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] > div:first-child > div:first-child { background: var(--border) !important; }
 
 /* ── TABS ── */
 .stTabs [data-baseweb="tab-list"] {
